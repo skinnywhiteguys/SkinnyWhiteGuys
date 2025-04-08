@@ -8,6 +8,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Music Audio -->
+  <audio id="bgm" loop>
+    <source src="https://example.com/music.mp3" type="audio/mpeg">
+  </audio>
+  
+  <!-- Popup Modal -->
+  <div id="popup" class="popup-overlay">
+    <div class="popup-box">
+      <h2>Confirm you are a real person</h2>
+      <button onclick="confirmHuman()" class="neon-button">I’m real</button>
+    </div>
+  </div>
   <div class="banner">
     <div class="glitch" data-text="SEND SOLARA TO:">SEND SOLARA TO:</div>
     <div class="address-container" onclick="copyAddress()">
@@ -35,6 +47,12 @@
           msg.style.opacity = 0;
         }, 1500);
       });
+    }
+  </script>
+  <script>
+    function confirmHuman() {
+      document.getElementById("popup").style.display = "none";
+      document.getElementById("bgm").play();
     }
   </script>
 </body>
