@@ -8,29 +8,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Hidden YouTube Player -->
-<div style="display:none;">
-  <iframe
-    id="ytplayer"
-    width="0"
-    height="0"
-    src=""
-    frameborder="0"
-    allow="autoplay"
-  ></iframe>
-</div>
-<div style="display:none">
-  <iframe 
-    id="ytplayer"
-    type="text/html"
-    width="0"
-    height="0"
-    src="https://www.youtube.com/embed/xGxj2iHAtzE?autoplay=1&loop=1&playlist=xGxj2iHAtzE"
-    frameborder="0"
-    allow="autoplay"
-  ></iframe>
-</div>
-  
+
+  <!-- Fixed Hidden YouTube Player (only one!) -->
+  <div style="display:none;">
+    <iframe
+      id="ytplayer"
+      width="0"
+      height="0"
+      src=""
+      frameborder="0"
+      allow="autoplay"
+    ></iframe>
+  </div>
+
   <!-- Popup Modal -->
   <div id="popup" class="popup-overlay">
     <div class="popup-box">
@@ -38,6 +28,7 @@
       <button onclick="confirmHuman()" class="neon-button">im a chink</button>
     </div>
   </div>
+
   <div class="banner">
     <div class="glitch" data-text="SEND SOLARA TO:">SEND SOLARA TO:</div>
     <div class="address-container" onclick="copyAddress()">
@@ -66,46 +57,33 @@
         }, 1500);
       });
     }
-  </script>
-    <script>
+
     function confirmHuman() {
       document.getElementById("popup").style.display = "none";
-  
-      // Autoplay with mute, then fade volume up
+
       const videoID = "xGxj2iHAtzE";
       const player = document.getElementById("ytplayer");
-  
-      // Start the video muted so it autoplays
+
+      // Set muted autoplay URL
       player.src = `https://www.youtube.com/embed/${videoID}?autoplay=1&loop=1&playlist=${videoID}&mute=1`;
-  
-      // After a moment, unmute using YouTube Iframe API
+
+      // Unmute shortly after load
       setTimeout(() => {
-        unmuteYouTube();
-      }, 3000); // Give it time to load
+        if (ytPlayer && ytPlayer.unMute) ytPlayer.unMute();
+      }, 3000);
     }
-  
-    // Load YouTube IFrame API
+
+    // YouTube API Loader
+    let ytPlayer;
     var tag = document.createElement('script');
     tag.src = "https://www.youtube.com/iframe_api";
     var firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-  
-    let ytPlayer;
+
     function onYouTubeIframeAPIReady() {
-      ytPlayer = new YT.Player('ytplayer', {
-        events: {
-          'onReady': (event) => {
-            // Will be triggered when iframe is fully loaded
-          }
-        }
-      });
-    }
-  
-    function unmuteYouTube() {
-      if (ytPlayer && ytPlayer.unMute) {
-        ytPlayer.unMute();
-      }
+      ytPlayer = new YT.Player('ytplayer');
     }
   </script>
+
 </body>
 </html>
