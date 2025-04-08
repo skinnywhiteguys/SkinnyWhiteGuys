@@ -156,3 +156,33 @@ body {
   color: #00ffe7;
   text-align: center;
 }
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.popup-box {
+  background: #111;
+  border: 2px solid #00ffe7;
+  padding: 40px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #00ffe7;
+  max-width: 90%;
+}
+
+.popup-box h2 {
+  color: #00ffe7;
+  margin-bottom: 20px;
+  font-size: 1.5em;
+  text-shadow: 0 0 10px #00ffe7;
+}
