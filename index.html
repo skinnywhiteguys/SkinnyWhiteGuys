@@ -9,22 +9,22 @@
 </head>
 <body>
 
-  <!-- Visible YouTube Player -->
-  <div class="video-container" style="text-align:center; margin-top: 20px;">
-    <iframe width="0" height="0" 
-      src="https://www.youtube.com/embed/xGxj2iHAtzE?autoplay=1&loop=1&playlist=xGxj2iHAtzE" 
-      frameborder="0" 
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-      allowfullscreen>
-    </iframe>
-  </div>
-
   <!-- Popup Modal -->
   <div id="popup" class="popup-overlay">
     <div class="popup-box">
       <h2>only real chinks are allowed</h2>
       <button onclick="confirmHuman()" class="neon-button">im a chink</button>
     </div>
+  </div>
+
+  <!-- Visible YouTube Player -->
+  <div class="video-container" style="text-align:center; margin-top: 20px;">
+    <iframe id="ytplayer" width="560" height="315" 
+      src="" 
+      frameborder="0" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+      allowfullscreen>
+    </iframe>
   </div>
 
   <div class="banner">
@@ -58,6 +58,10 @@
 
     function confirmHuman() {
       document.getElementById("popup").style.display = "none";
+      
+      // Get the iframe and set the YouTube video link with autoplay
+      const player = document.getElementById("ytplayer");
+      player.src = "https://www.youtube.com/embed/xGxj2iHAtzE?autoplay=1&loop=1&playlist=xGxj2iHAtzE";
     }
   </script>
 
