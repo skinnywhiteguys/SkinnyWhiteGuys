@@ -58,10 +58,29 @@
 
     function confirmHuman() {
       document.getElementById("popup").style.display = "none";
-
-      // Modify the YouTube embed URL to enable autoplay
+      
+      // Get the iframe element
       const player = document.getElementById("ytplayer");
-      player.src = "https://www.youtube.com/embed/xGxj2iHAtzE?autoplay=1&loop=1&playlist=xGxj2iHAtzE";
+      const originalSrc = player.src;
+
+      // Function to retry autoplay if it fails
+      let attemptCount = 0;
+      const maxAttempts = 5; // Number of attempts to retry autoplay
+
+      // Modify the video src to include autoplay
+      function tryAutoplay() {
+        if (attemptCount < maxAttempts) {
+          attemptCount++;
+          // Set the video to autoplay and loop
+          player.src = `https://www.youtube.com/embed/xGxj2iHAtzE?autoplay=1&loop=1&playlist=xGxj2iHAtzE`;
+
+          // Retry every second
+          setTimeout(tryAutoplay, 1000);
+        }
+      }
+
+      // Start the autoplay attempt
+      tryAutoplay();
     }
   </script>
 
