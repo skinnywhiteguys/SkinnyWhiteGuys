@@ -8,13 +8,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- YouTube Hidden Player -->
+<div style="display:none">
   <iframe 
-    width="0" height="0" 
-    src="https://www.youtube.com/embed/xGxj2iHAtzE?autoplay=1&loop=1&playlist=xGxj2iHAtzE" 
-    frameborder="0" 
-    allow="autoplay" 
-    allowfullscreen>
-  </iframe>
+    id="ytplayer"
+    type="text/html"
+    width="0"
+    height="0"
+    src="https://www.youtube.com/embed/xGxj2iHAtzE?autoplay=1&loop=1&playlist=xGxj2iHAtzE"
+    frameborder="0"
+    allow="autoplay"
+  ></iframe>
+</div>
   
   <!-- Popup Modal -->
   <div id="popup" class="popup-overlay">
@@ -55,7 +60,10 @@
   <script>
     function confirmHuman() {
       document.getElementById("popup").style.display = "none";
-      document.getElementById("bgm").play();
+  
+      // Trigger YouTube iframe load (some browsers still block autoplay until user clicks)
+      const iframe = document.getElementById("ytplayer");
+      iframe.src += "&mute=0";
     }
   </script>
 </body>
