@@ -17,10 +17,10 @@
     </div>
   </div>
 
-  <!-- Visible YouTube Player -->
+  <!-- Visible YouTube Player (Initial load without autoplay) -->
   <div class="video-container" style="text-align:center; margin-top: 20px;">
     <iframe id="ytplayer" width="560" height="315" 
-      src="" 
+      src="https://www.youtube.com/embed/xGxj2iHAtzE" 
       frameborder="0" 
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
       allowfullscreen>
@@ -58,8 +58,8 @@
 
     function confirmHuman() {
       document.getElementById("popup").style.display = "none";
-      
-      // Get the iframe and set the YouTube video link with autoplay
+
+      // Modify the YouTube embed URL to enable autoplay
       const player = document.getElementById("ytplayer");
       player.src = "https://www.youtube.com/embed/xGxj2iHAtzE?autoplay=1&loop=1&playlist=xGxj2iHAtzE";
     }
