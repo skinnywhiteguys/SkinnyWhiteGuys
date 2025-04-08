@@ -8,7 +8,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- YouTube Hidden Player -->
+  <!-- Hidden YouTube Player -->
+<div style="display:none;">
+  <iframe
+    id="ytplayer"
+    width="0"
+    height="0"
+    src=""
+    frameborder="0"
+    allow="autoplay"
+  ></iframe>
+</div>
 <div style="display:none">
   <iframe 
     id="ytplayer"
@@ -24,8 +34,8 @@
   <!-- Popup Modal -->
   <div id="popup" class="popup-overlay">
     <div class="popup-box">
-      <h2>Confirm you are a real person</h2>
-      <button onclick="confirmHuman()" class="neon-button">I’m real</button>
+      <h2>only real chinks are allowed</h2>
+      <button onclick="confirmHuman()" class="neon-button">im a chink</button>
     </div>
   </div>
   <div class="banner">
@@ -57,13 +67,44 @@
       });
     }
   </script>
-  <script>
+    <script>
     function confirmHuman() {
       document.getElementById("popup").style.display = "none";
   
-      // Trigger YouTube iframe load (some browsers still block autoplay until user clicks)
-      const iframe = document.getElementById("ytplayer");
-      iframe.src += "&mute=0";
+      // Autoplay with mute, then fade volume up
+      const videoID = "xGxj2iHAtzE";
+      const player = document.getElementById("ytplayer");
+  
+      // Start the video muted so it autoplays
+      player.src = `https://www.youtube.com/embed/${videoID}?autoplay=1&loop=1&playlist=${videoID}&mute=1`;
+  
+      // After a moment, unmute using YouTube Iframe API
+      setTimeout(() => {
+        unmuteYouTube();
+      }, 3000); // Give it time to load
+    }
+  
+    // Load YouTube IFrame API
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+  
+    let ytPlayer;
+    function onYouTubeIframeAPIReady() {
+      ytPlayer = new YT.Player('ytplayer', {
+        events: {
+          'onReady': (event) => {
+            // Will be triggered when iframe is fully loaded
+          }
+        }
+      });
+    }
+  
+    function unmuteYouTube() {
+      if (ytPlayer && ytPlayer.unMute) {
+        ytPlayer.unMute();
+      }
     }
   </script>
 </body>
